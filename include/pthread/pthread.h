@@ -948,7 +948,7 @@ PTW32_DLLPORT int PTW32_CDECL pthread_detach (pthread_t tid);
 PTW32_DLLPORT int PTW32_CDECL pthread_equal (pthread_t t1,
                            pthread_t t2);
 
-PTW32_DLLPORT __declspec(noreturn) void PTW32_CDECL pthread_exit (void *value_ptr);
+PTW32_DLLPORT void PTW32_CDECL pthread_exit (void *value_ptr);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_join (pthread_t thread,
                           void **value_ptr);
