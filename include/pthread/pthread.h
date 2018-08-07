@@ -551,8 +551,18 @@ extern "C"
 #if !defined(PTW32_STATIC_LIB)
 #  if defined(PTW32_BUILD)
 #    define PTW32_DLLPORT __declspec (dllexport)
+#    ifndef __GNUC__
+#      define PTW32_DLLPORT_NORET __declspec(dllexport, noreturn)
+#    else
+#      define PTW32_DLLPORT_NORET __declspec(dllexport)
+#    endif
 #  else
 #    define PTW32_DLLPORT __declspec (dllimport)
+#    ifndef __GNUC__
+#      define PTW32_DLLPORT_NORET __declspec(dllimport, noreturn)
+#    else
+#      define PTW32_DLLPORT_NORET __declspec(dllimport)
+#    endif
 #  endif
 #else
 #  define PTW32_DLLPORT
@@ -948,7 +958,7 @@ PTW32_DLLPORT int PTW32_CDECL pthread_detach (pthread_t tid);
 PTW32_DLLPORT int PTW32_CDECL pthread_equal (pthread_t t1,
                            pthread_t t2);
 
-PTW32_DLLPORT void PTW32_CDECL pthread_exit (void *value_ptr);
+PTW32_DLLPORT_NORET void PTW32_CDECL pthread_exit (void *value_ptr);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_join (pthread_t thread,
                           void **value_ptr);
